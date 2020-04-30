@@ -7,7 +7,9 @@ describe('<Button />', () => {
   let wrapper;
   let onButtonClick = sinon.spy();
   beforeEach(() => wrapper = mount(<Button onClick={onButtonClick} />));
-
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
   it('Should Render a Button Container', () => {
     expect(wrapper.find('button[data-test="button-container"]').length).toEqual(1);
   });
@@ -22,7 +24,9 @@ describe('<Button isDisabled />', () => {
   let wrapper;
   let onButtonClick = sinon.spy();
   beforeEach(() => wrapper = mount(<Button isDisabled onClick={onButtonClick} />));
-
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
   it('Should Render a Button Container', () => {
     expect(wrapper.find('button[data-test="button-container"]').length).toEqual(1);
   });
@@ -53,7 +57,9 @@ describe('<Button {...props} />', () => {
     marginRight: 10
   };
   beforeEach(() => wrapper = mount(<Button {...props} />));
-
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
   it('Should Render a Button Container', () => {
     expect(wrapper.find('button[data-test="button-container"]').length).toEqual(1);
   });

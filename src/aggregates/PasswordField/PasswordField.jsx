@@ -32,7 +32,7 @@ const PasswordField = function (props) {
     if (data.length === 0 && error) {
       setShowMessage("Password is mandatory");
     } else if (data.length > 0 && data.length <= 6 && error) {
-      setShowMessage("Should me more than 6 characters long");
+      setShowMessage("Should be more than 6 characters long");
     } else {
       if (PASSWORD_REGEX.test(data)) {
         setValid(true);
@@ -42,7 +42,9 @@ const PasswordField = function (props) {
     }
   };
   return (
-    <Container>
+    <Container
+      data-test="password-field-container"
+    >
       <TextInput
         elementType="password"
         marginTop={10}

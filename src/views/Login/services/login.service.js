@@ -34,4 +34,41 @@ export function useValidateLogin(data) {
   },[data.email, data.password]);
 
   return loginStatus;
-}
+};
+
+
+export function useValidateOtp(data) {
+  const [otpStatus, setOtpStatus] = useState({
+    status: 0,
+    message: "",
+    data: {}
+  });
+  useEffect(() => {
+    if (data.otp) {
+      setOtpStatus({
+        status: 1,
+        message: "Loading..",
+        data: {}
+      });
+      fetch(`http://www.mocky.io/v2/5d9d9219310000153650e30b`)
+        .then(response => response.json())
+        .then(response => {
+          setOtpStatus({
+            status: 2,
+            message: "Success",
+            data: response.result
+          });
+        })
+        .catch(err => {
+          setOtpStatus({
+            status: 3,
+            message: err.message,
+            data: err
+          });
+        })
+    }
+    return () => { };
+  }, [data.otp]);
+
+  return otpStatus;
+};

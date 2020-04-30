@@ -43,7 +43,7 @@ const EmailField = function (props) {
     }
   };
   return (
-    <Container>
+    <Container data-test="email-field-container">
       <TextInput
         elementType="text"
         marginTop={10}

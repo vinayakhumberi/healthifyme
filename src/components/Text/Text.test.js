@@ -6,7 +6,9 @@ describe('<Text />', () => {
   let wrapper;
   const text = "This is a test text";
   beforeEach(() => wrapper = shallow(<Text text={text} />));
-
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
   it('Should Render a Text Container', () => {
     expect(wrapper.find('[data-test="text-container"]').length).toEqual(1);
   });
@@ -39,7 +41,9 @@ describe('<Text {...props} />', () => {
       elementType: "div"
   }
   beforeEach(() => wrapper = shallow(<Text {...props} />));
-
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
   it('Should Render a Text Container', () => {
     expect(wrapper.find('[data-test="text-container"]').length).toEqual(1);
   });

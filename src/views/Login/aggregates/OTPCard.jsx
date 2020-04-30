@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Text from '../../../components/Text/Text';
 import Image from '../../../components/Image/Image';
 import Button from '../../../components/Button/Button';
 import OTPField from '../../../aggregates/OTPField/OTPField';
 import Card from '../../../components/Card/Card';
 import {
-  Duolgo
+  Duolgo,
+  MessageSpace
 } from '../styles/style';
+import {
+  useValidateOtp
+} from '../services/login.service';
 
 const OTPCard = function (props) {
+  const [test, setTest] = useState({ otp: "" });
+  const otpStatus = useValidateOtp(test);
   const [data, setData] = useState({
     otp: ""
   });
+  useEffect(() => {
+    if (otpStatus.status === 2) {
+      // props.handleUpdateView(1);
+      alert("welcome");
+    }
+    return () => { }
+  }, [otpStatus.status]);
   const handleSetOTP = (inData) => {
     setData(data => ({
       ...data,
@@ -20,7 +33,7 @@ const OTPCard = function (props) {
   };
   const handleOnClick = () => {
     if (data.otp !== "") {
-      alert("Sumbit your form", data.otp);
+      setTest(data);
     }
   };
   return (
@@ -59,18 +72,24 @@ const OTPCard = function (props) {
       <OTPField
         updateOTP={handleSetOTP}
       />
+      <MessageSpace>
+        {otpStatus.status !== 0 && <Text
+          text={otpStatus.message}
+          color="#343434"
+        />}
+      </MessageSpace>
       <Duolgo>
         <Button
           buttonText="Get SMS OTP"
           width="100%"
-          marginTop={30}
+          marginTop={9}
           backgroundColor="#fff"
           color="#ec445c"
         />
         <Button
           buttonText="Verify"
           width="100%"
-          marginTop={30}
+          marginTop={9}
           isDisabled={data.otp === ""}
           onClick={handleOnClick}
         />

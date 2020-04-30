@@ -30,14 +30,15 @@ describe('<Card {...props} />', () => {
     textAlign: "initial",
   };
   beforeEach(() => wrapper = shallow(<Card {...props} >{text}</Card>));
-
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
   it('Should Render a Card Container', () => {
     expect(wrapper.find('[data-test="card-container"]').length).toEqual(1);
   });
   it('Should Render a Card Container', () => {
     expect(wrapper.text()).toEqual(text);
   });
-
   it('Should pass backgroundColor prop to Button as auto', () => {
     expect(wrapper.find('[data-test="card-container"]').get(0).props.width).toEqual(props.width);
   });

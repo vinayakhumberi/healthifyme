@@ -42,7 +42,9 @@ const OTPField = function (props) {
     }
   };
   return (
-    <Container>
+    <Container
+      data-test="otp-field-container"
+    >
       <TextInput
         elementType="text"
         marginTop={10}

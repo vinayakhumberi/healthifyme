@@ -9,11 +9,12 @@ describe('<TextInput />', () => {
   let onInputBlur = sinon.spy();
   const text = "This is a test text";
   beforeEach(() => wrapper = shallow(<TextInput text={text} onChange={onInputChange} onBlur={onInputBlur} />));
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
   it('Should Render a TextInput Container', () => {
     expect(wrapper.find('[data-test="text-input-container"]').length).toEqual(1);
   });
-
-  // Should find a way to do test onChange and onBlur
 });
 
 
@@ -41,11 +42,12 @@ describe('<TextInput {...props} />', () => {
     borderColor: '#eee'
   };
   beforeEach(() => wrapper = shallow(<TextInput {...props} />));
-
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
   it('Should Render a TextInput Container', () => {
     expect(wrapper.find('[data-test="text-input-container"]').length).toEqual(1);
   });
-
   it('Should pass color prop to TextInput', () => {
     expect(wrapper.find('[data-test="text-input-container"]').get(0).props.color).toEqual(props.color);
   });

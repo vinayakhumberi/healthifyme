@@ -7,7 +7,9 @@ describe('<Image />', () => {
   let imgUrl ="https://s3.ap-south-1.amazonaws.com/tpng-images/random/original/6be52f0b-56bf-4fdc-abd3-0bec9e58610c.png";
   let altText="tests";
   beforeEach(() => wrapper = shallow(<Image src={imgUrl} alt={altText} />));
-
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
   it('Should Render a Image Container', () => {
     expect(wrapper.find('[data-test="image-container"]').length).toEqual(1);
   });
@@ -34,7 +36,9 @@ describe('<Image />', () => {
     objectFit: "initial",
   };
   beforeEach(() => wrapper = shallow(<Image src={imgUrl} alt={altText} {...props} />));
-
+  it('renders correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
   it('Should Render a Image Container', () => {
     expect(wrapper.find('[data-test="image-container"]').length).toEqual(1);
   });
